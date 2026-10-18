@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000016"]
+
+[ext_resource type="Script" path="res://scripts/classes/Mage.gd" uid="uid://00000000-0000-0000-0000-00000000000c"]
+
+[sub_resource type="Sprite2D" id="Sprite2D_00001"]
+
+[sub_resource type="CollisionShape2D" id="CollisionShape2D_00001"]
+shape = "rect"
+extents = Rect2( -8, -8, 16, 16 )
+
+[node name="Mage" type="CharacterBody2D"]
+script = ExtResource( "uid://00000000-0000-0000-0000-00000000000c" )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000008"]
+
+[ext_resource type="Script" path="res://scripts/world/City.gd" uid="uid://00000000-0000-0000-0000-000000000008"]
+
+[node name="City" type="Node2D"]
+script = ExtResource( "uid://00000000-0000-0000-0000-000000000008" )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size = Vector2(1280, 720)
+
+[node name="TitleLabel" type="Label" parent="UI/HUD"]
+position = Vector2(10, 10)
+text = "Місто: Камілгтон"
+font_size = 32
+
+[node name="StatsPanel" type="Panel" parent="UI/HUD"]
+position = Vector2(10, 60)
+size = Vector2(200, 150)
+
+[node name="HPLabel" type="Label" parent="UI/HUD/StatsPanel"]
+position = Vector2(10, 10)
+text = "HP: 10/10"
+
+[node name="ActionPanel" type="Panel" parent="UI/HUD"]
+position = Vector2(10, 600)
+size = Vector2(300, 100)
+
+[node name="TavernButton" type="Button" parent="UI/HUD/ActionPanel"]
+position = Vector2(10, 10)
+text = "Таверна"
+pressed.connect = [ : "_on_tavern_button_pressed" ]
+
+[node name="TempleButton" type="Button" parent="UI/HUD/ActionPanel"]
+position = Vector2(10, 50)
+text = "Храм"
+pressed.connect = [ : "_on_temple_button_pressed" ]
+
+[node name="ShopButton" type="Button" parent="UI/HUD/ActionPanel"]
+position = Vector2(150, 10)
+text = "Крама"
+pressed.connect = [ : "_on_shop_button_pressed" ]
+
+[node name="ExitButton" type="Button" parent="UI/HUD/ActionPanel"]
+position = Vector2(150, 50)
+text = "Вийти з міста"
+pressed.connect = [ : "_on_exit_button_pressed" ]
+
+[connection signal="pressed" from="UI/HUD/ActionPanel/TavernButton" to="City" method="_on_tavern_button_pressed"]
+[connection signal="pressed" from="UI/HUD/ActionPanel/TempleButton" to="City" method="_on_temple_button_pressed"]
+[connection signal="pressed" from="UI/HUD/ActionPanel/ShopButton" to="City" method="_on_shop_button_pressed"]
+[connection signal="pressed" from="UI/HUD/ActionPanel/ExitButton" to="City" method="_on_exit_button_pressed"]
