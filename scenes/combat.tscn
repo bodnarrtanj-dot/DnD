@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000007"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scripts/world/Combat.gd" uid="uid://00000000-0000-0000-0000-000000000007"]
+[ext_resource type="Script" path="res://scripts/world/Combat.gd" uid="uid://combat_script"]
 
 [node name="Combat" type="Node2D"]
-script = ExtResource( "uid://00000000-0000-0000-0000-000000000007" )
+script = ExtResource( "uid://combat_script" )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -32,24 +32,15 @@ size = Vector2(300, 300)
 [node name="AttackButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 10)
 text = "Атака"
-pressed.connect = [ : "_on_attack_button_pressed" ]
 
 [node name="SpellButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 60)
 text = "Заклинання"
-pressed.connect = [ : "_on_spell_button_pressed" ]
 
 [node name="DefendButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 110)
 text = "Захист"
-pressed.connect = [ : "_on_defend_button_pressed" ]
 
 [node name="EndTurnButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 160)
 text = "Завершити хід"
-pressed.connect = [ : "_on_end_turn_button_pressed" ]
-
-[connection signal="pressed" from="UI/HUD/ActionPanel/AttackButton" to="Combat" method="_on_attack_button_pressed"]
-[connection signal="pressed" from="UI/HUD/ActionPanel/SpellButton" to="Combat" method="_on_spell_button_pressed"]
-[connection signal="pressed" from="UI/HUD/ActionPanel/DefendButton" to="Combat" method="_on_defend_button_pressed"]
-[connection signal="pressed" from="UI/HUD/ActionPanel/EndTurnButton" to="Combat" method="_on_end_turn_button_pressed"]

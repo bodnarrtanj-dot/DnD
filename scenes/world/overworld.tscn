@@ -1,21 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000003"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scripts/world/Overworld.gd" uid="uid://00000000-0000-0000-0000-000000000003"]
-
-[sub_resource type="TileSet" id="TileSet_00001"]
-
-[sub_resource type="TileMap" id="TileMap_00001"]
-tile_set = ExtResource( "uid://00000000-0000-0000-0000-000000000004" )
-cell_size = Vector2(16, 16)
+[ext_resource type="Script" path="res://scripts/world/Overworld.gd" uid="uid://overworld_script"]
 
 [node name="Overworld" type="Node2D"]
-script = ExtResource( "uid://00000000-0000-0000-0000-000000000003" )
+script = ExtResource( "uid://overworld_script" )
 
 [node name="TileMap" type="TileMap" parent="."]
 cell_size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-script = ExtResource( "uid://00000000-0000-0000-0000-000000000005" )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -55,12 +48,7 @@ size = Vector2(300, 100)
 [node name="RollButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 10)
 text = "Кинути кубик (d6)"
-pressed.connect = [ : "_on_roll_button_pressed" ]
 
 [node name="MoveButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 50)
 text = "Рух"
-pressed.connect = [ : "_on_move_button_pressed" ]
-
-[connection signal="pressed" from="UI/HUD/ActionPanel/RollButton" to="Overworld" method="_on_roll_button_pressed"]
-[connection signal="pressed" from="UI/HUD/ActionPanel/MoveButton" to="Overworld" method="_on_move_button_pressed"]

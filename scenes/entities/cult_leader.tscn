@@ -1,17 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000014"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scripts/entities/Monster.gd" uid="uid://00000000-0000-0000-0000-00000000000a"]
-
-[sub_resource type="Sprite2D" id="Sprite2D_00001"]
-
-[sub_resource type="CollisionShape2D" id="CollisionShape2D_00001"]
-shape = "rect"
-extents = Rect2( -8, -8, 16, 16 )
+[ext_resource type="Script" path="res://scripts/entities/Monster.gd" uid="uid://monster_script"]
 
 [node name="CultLeader" type="CharacterBody2D"]
-script = ExtResource( "uid://00000000-0000-0000-0000-00000000000a" )
+script = ExtResource( "uid://monster_script" )
 metadata = {"type": "cult_leader", "hp": 100, "ac": 18, "xp_reward": 1000}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = "rect"
+extents = Rect2( -8, -8, 16, 16 )

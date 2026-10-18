@@ -1,21 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000000"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" uid="uid://00000000-0000-0000-0000-000000000001"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00001"]
-color = Color(0.1, 0.1, 0.1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00002"]
-color = Color(0.2, 0.2, 0.2, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00003"]
-color = Color(0.8, 0.8, 0.8, 1)
-
-[sub_resource type="Font" id="Font_00001"]
-font_data = "AQAAAAB8c3R5cAAAAAQAAAAEAAAAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+[ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" uid="uid://main_menu_script"]
 
 [node name="MainMenu" type="Control"]
-script = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
+script = ExtResource( "uid://main_menu_script" )
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -25,16 +13,12 @@ color = Color(0.05, 0.05, 0.05, 1)
 [node name="Title" type="Label" parent="."]
 text = "Shadows of the Forgotten"
 position = Vector2(0, -150)
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 48
 align = 1
 valign = 1
 
 [node name="Subtitle" type="Label" parent="."]
 text = "Cult of Kaplos"
 position = Vector2(0, -100)
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 24
 align = 1
 valign = 1
 
@@ -45,21 +29,12 @@ align = 1
 
 [node name="NewGameButton" type="Button" parent="ButtonContainer"]
 text = "Нова гра"
-pressed.connect = [ : "_on_new_game_pressed" ]
 
 [node name="LoadGameButton" type="Button" parent="ButtonContainer"]
 text = "Завантажити гру"
-pressed.connect = [ : "_on_load_game_pressed" ]
 
 [node name="SettingsButton" type="Button" parent="ButtonContainer"]
 text = "Налаштування"
-pressed.connect = [ : "_on_settings_pressed" ]
 
 [node name="QuitButton" type="Button" parent="ButtonContainer"]
 text = "Вийти"
-pressed.connect = [ : "_on_quit_pressed" ]
-
-[connection signal="pressed" from="ButtonContainer/NewGameButton" to="MainMenu" method="_on_new_game_pressed"]
-[connection signal="pressed" from="ButtonContainer/LoadGameButton" to="MainMenu" method="_on_load_game_pressed"]
-[connection signal="pressed" from="ButtonContainer/SettingsButton" to="MainMenu" method="_on_settings_pressed"]
-[connection signal="pressed" from="ButtonContainer/QuitButton" to="MainMenu" method="_on_quit_pressed"]

@@ -1,21 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000006"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scripts/world/Dungeon.gd" uid="uid://00000000-0000-0000-0000-000000000006"]
-
-[sub_resource type="TileSet" id="TileSet_00002"]
-
-[sub_resource type="TileMap" id="TileMap_00002"]
-tile_set = ExtResource( "uid://00000000-0000-0000-0000-000000000007" )
-cell_size = Vector2(16, 16)
+[ext_resource type="Script" path="res://scripts/world/Dungeon.gd" uid="uid://dungeon_script"]
 
 [node name="Dungeon" type="Node2D"]
-script = ExtResource( "uid://00000000-0000-0000-0000-000000000006" )
+script = ExtResource( "uid://dungeon_script" )
 
 [node name="TileMap" type="TileMap" parent="."]
 cell_size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-script = ExtResource( "uid://00000000-0000-0000-0000-000000000005" )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -39,18 +32,11 @@ size = Vector2(300, 100)
 [node name="MoveButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 10)
 text = "Рух"
-pressed.connect = [ : "_on_move_button_pressed" ]
 
 [node name="AttackButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(10, 50)
 text = "Атака"
-pressed.connect = [ : "_on_attack_button_pressed" ]
 
 [node name="ExitButton" type="Button" parent="UI/HUD/ActionPanel"]
 position = Vector2(150, 10)
 text = "Вийти з данжу"
-pressed.connect = [ : "_on_exit_button_pressed" ]
-
-[connection signal="pressed" from="UI/HUD/ActionPanel/MoveButton" to="Dungeon" method="_on_move_button_pressed"]
-[connection signal="pressed" from="UI/HUD/ActionPanel/AttackButton" to="Dungeon" method="_on_attack_button_pressed"]
-[connection signal="pressed" from="UI/HUD/ActionPanel/ExitButton" to="Dungeon" method="_on_exit_button_pressed"]

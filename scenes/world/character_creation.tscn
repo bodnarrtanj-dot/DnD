@@ -1,21 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://00000000-0000-0000-0000-000000000002"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://scripts/ui/CharacterCreation.gd" uid="uid://00000000-0000-0000-0000-000000000002"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00001"]
-color = Color(0.1, 0.1, 0.1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00002"]
-color = Color(0.2, 0.2, 0.2, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00003"]
-color = Color(0.8, 0.8, 0.8, 1)
-
-[sub_resource type="Font" id="Font_00001"]
-font_data = "AQAAAAB8c3R5cAAAAAQAAAAEAAAAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+[ext_resource type="Script" path="res://scripts/ui/CharacterCreation.gd" uid="uid://character_creation_script"]
 
 [node name="CharacterCreation" type="Control"]
-script = ExtResource( "uid://00000000-0000-0000-0000-000000000002" )
+script = ExtResource( "uid://character_creation_script" )
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -25,8 +13,6 @@ color = Color(0.05, 0.05, 0.05, 1)
 [node name="Title" type="Label" parent="."]
 text = "Створення персонажа"
 position = Vector2(0, -200)
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 36
 align = 1
 valign = 1
 
@@ -37,47 +23,30 @@ align = 1
 
 [node name="NameLabel" type="Label" parent="FormContainer"]
 text = "Ім'я:"
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 20
 
 [node name="NameInput" type="LineEdit" parent="FormContainer"]
 placeholder_text = "Введіть ім'я"
 
 [node name="RaceLabel" type="Label" parent="FormContainer"]
 text = "Раса:"
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 20
 
 [node name="RaceSelector" type="OptionButton" parent="FormContainer"]
 
 [node name="ClassLabel" type="Label" parent="FormContainer"]
 text = "Клас:"
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 20
 
 [node name="ClassSelector" type="OptionButton" parent="FormContainer"]
 
 [node name="StatsLabel" type="Label" parent="FormContainer"]
 text = "Характеристики:"
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 20
 
 [node name="StatsDisplay" type="Label" parent="FormContainer"]
-font = ExtResource( "uid://00000000-0000-0000-0000-000000000001" )
-font_size = 16
 
 [node name="RollButton" type="Button" parent="FormContainer"]
 text = "Кинути кубики"
-pressed.connect = [ : "_on_roll_button_pressed" ]
 
 [node name="ConfirmButton" type="Button" parent="FormContainer"]
 text = "Підтвердити"
-pressed.connect = [ : "_on_confirm_button_pressed" ]
 
 [node name="BackButton" type="Button" parent="FormContainer"]
 text = "Назад"
-pressed.connect = [ : "_on_back_button_pressed" ]
-
-[connection signal="pressed" from="FormContainer/RollButton" to="CharacterCreation" method="_on_roll_button_pressed"]
-[connection signal="pressed" from="FormContainer/ConfirmButton" to="CharacterCreation" method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="FormContainer/BackButton" to="CharacterCreation" method="_on_back_button_pressed"]
