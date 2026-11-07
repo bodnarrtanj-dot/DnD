@@ -13,7 +13,7 @@ func _ready():
 	class_selector.add_item("Маг")
 	class_selector.add_item("Слідопит")
 	class_selector.add_item("Клерик")
-	class_selector.item_selected = 0
+	class_selector.select(0)
 	confirm_btn.pressed.connect(_on_confirm)
 	back_btn.pressed.connect(_on_back)
 	class_selector.item_selected.connect(_on_class_selected)
