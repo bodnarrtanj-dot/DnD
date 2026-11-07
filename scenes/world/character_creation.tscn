@@ -19,7 +19,7 @@ align = 1
 text = "Ім'я:"
 
 [node name="NameInput" type="LineEdit" parent="FormContainer"]
-placeholder_text = "Введіть ім'я"
+placeholder_text = "Нікнейм"
 
 [node name="ClassLabel" type="Label" parent="FormContainer"]
 text = "Клас:"
