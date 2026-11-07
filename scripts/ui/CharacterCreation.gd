@@ -39,8 +39,7 @@ func _on_confirm():
 	var player_scene = preload("res://scenes/entities/player.tscn")
 	var player = player_scene.instantiate()
 	player.display_name = name_input.text
-	player.class_name_val = selected_class
-	player._ready()
+	player.setup_class(selected_class)
 	GameManager.current_player = player
 	GameManager.add_player(player)
 	get_tree().change_scene_to_file("res://scenes/world/prolog.tscn")

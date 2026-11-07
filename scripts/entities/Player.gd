@@ -26,6 +26,17 @@ var hp: int:
 		elif _hp > max_hp:
 			_hp = max_hp
 
+var _mp: int = 0
+var max_mp: int = 0
+var mp: int:
+	get: return _mp
+	set(value):
+		_mp = value
+		if _mp < 0:
+			_mp = 0
+		elif _mp > max_mp:
+			_mp = max_mp
+
 var ac: int = 10
 var speed: int = 1
 var actions_per_turn: int = 1
@@ -65,6 +76,37 @@ func _setup_class_stats():
 			max_hp = 8
 			hp = max_hp
 			equipment["weapon"] = {"name": "Буздиган", "type": "melee", "damage_dice": "1d6", "attack_bonus": 1}
+
+func setup_class(class_name: String):
+	class_name_val = class_name
+	match class_name:
+		"Воїн":
+			strength = 16
+			dexterity = 14
+			constitution = 16
+			max_hp = 10
+			equipment["weapon"] = {"name": "Меч", "damage_dice": "1d6", "attack_bonus": 2}
+		"Маг":
+			intelligence = 16
+			dexterity = 14
+			constitution = 10
+			max_hp = 6
+			max_mp = 10
+			equipment["weapon"] = {"name": "Палиця", "damage_dice": "1d4", "attack_bonus": 0}
+		"Слідопит":
+			dexterity = 16
+			wisdom = 14
+			constitution = 14
+			max_hp = 8
+			equipment["weapon"] = {"name": "Лук", "damage_dice": "1d8", "attack_bonus": 2}
+		"Клерик":
+			wisdom = 16
+			constitution = 14
+			charisma = 12
+			max_hp = 8
+			equipment["weapon"] = {"name": "Буздиган", "damage_dice": "1d6", "attack_bonus": 1}
+	hp = max_hp
+	mp = max_mp
 
 func get_strength_modifier() -> int:
 	return floor((strength - 10) / 2.0)
