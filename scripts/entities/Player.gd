@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var name: String = "Авантюрист"
+var display_name: String = "Авантюрист"
 var race: String = "Людина"
 var class_name_val: String = "Воїн"
 var level: int = 1

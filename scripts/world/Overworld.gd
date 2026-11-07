@@ -135,5 +135,5 @@ func update_ui():
 		mp_label.text = "MP: %d/%d" % [0, 0]
 		position_label.text = "Position: (%d, %d)" % [player.current_cell.x, player.current_cell.y]
 
-func _process(delta):
+func _process(_delta):
 	update_ui()

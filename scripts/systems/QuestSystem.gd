@@ -7,7 +7,7 @@ func _ready():
 	# Initialize with main quest
 	var main_quest = {
 		"id": "main_quest",
-		"name": "Кult of Kaplos",
+		"name": "Cult of Kaplos",
 		"description": "Investigate the Cult of Kaplos and defeat Mal'gathor",
 		"objectives": [
 			{"description": "Find Cultist Camp", "completed": false},
@@ -53,4 +53,3 @@ func get_completed_quests() -> Array:
 
 signal quest_added(quest_id: String)
 signal quest_completed(quest_id: String)
-signal objective_updated(quest_id: String, objective_index: int)
