@@ -44,9 +44,9 @@ func _ready():
 	setup_class(class_name_val)
 	update_ui()
 
-func setup_class(class_name: String):
-	class_name_val = class_name
-	match class_name:
+func setup_class(p_class: String):
+	class_name_val = p_class
+	match p_class:
 		"Воїн":
 			strength = 16
 			dexterity = 14
