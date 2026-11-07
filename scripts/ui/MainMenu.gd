@@ -5,17 +5,16 @@ extends Control
 @onready var quit_button: Button = $ButtonContainer/QuitButton
 
 func _ready():
-	new_game_button.pressed.connect(_on_new_game_pressed)
-	load_game_button.pressed.connect(_on_load_game_pressed)
-	quit_button.pressed.connect(_on_quit_pressed)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	new_game_button.pressed.connect(_on_new_game)
+	load_game_button.pressed.connect(_on_load_game)
+	quit_button.pressed.connect(_on_quit)
 
-func _on_new_game_pressed():
+func _on_new_game():
+	get_tree().change_scene_to_file("res://scenes/world/character_creation.tscn")
+
+func _on_load_game():
 	get_tree().change_scene_to_file("res://scenes/world/overworld.tscn")
 
-func _on_load_game_pressed():
-	# Load game functionality would go here
-	GameManager.load_game()
-	get_tree().change_scene_to_file("res://scenes/world/overworld.tscn")
-
-func _on_quit_pressed():
+func _on_quit():
 	get_tree().quit()

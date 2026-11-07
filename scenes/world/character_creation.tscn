@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/CharacterCreation.gd" id=1]
+
+[node name="CharacterCreation" type="Control"]
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.05, 1)
+
+[node name="FormContainer" type="VBoxContainer" parent="."]
+position = Vector2(0, -50)
+size = Vector2(400, 500)
+align = 1
+
+[node name="NameLabel" type="Label" parent="FormContainer"]
+text = "Ім'я:"
+
+[node name="NameInput" type="LineEdit" parent="FormContainer"]
+placeholder_text = "Введіть ім'я"
+
+[node name="ClassLabel" type="Label" parent="FormContainer"]
+text = "Клас:"
+
+[node name="ClassSelector" type="OptionButton" parent="FormContainer"]
+
+[node name="StatsLabel" type="Label" parent="FormContainer"]
+text = "Характеристики:"
+
+[node name="StatsDisplay" type="Label" parent="FormContainer"]
+
+[node name="ConfirmButton" type="Button" parent="FormContainer"]
+text = "Підтвердити"
+
+[node name="BackButton" type="Button" parent="FormContainer"]
+text = "Назад"

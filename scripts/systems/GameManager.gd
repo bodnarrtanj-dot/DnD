@@ -30,6 +30,9 @@ func load_main_menu():
 	current_scene = "main_menu"
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
+func add_player(player: CharacterBody2D):
+	current_player = player
+
 func save_game():
 	# Save game state to file
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)

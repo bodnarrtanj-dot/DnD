@@ -7,11 +7,13 @@ const TILE_CAMILGTON: int = 8
 
 @onready var tile_map: TileMap = $TileMap
 @onready var player: CharacterBody2D = $Player
+@onready var roll_button: Button = $UI/HUD/ActionPanel/RollButton
 
 func _ready():
 	generate_world()
 	player.global_position = tile_map.map_to_local(Vector2i(25, 25))
 	player.current_cell = Vector2i(25, 25)
+	roll_button.hide()
 
 func generate_world():
 	for x in range(MAP_SIZE.x):
