@@ -77,7 +77,7 @@ func attack(target: Node2D) -> bool:
 		return false
 	var attack = attacks[randi() % attacks.size()]
 	var attack_roll = DiceSystem.roll_d20() + attack.get("hit_bonus", 0)
-	var target_ac = target.get("ac", 10) if target.has_method("get") else 10
+	var target_ac = target.ac if "ac" in target else 10
 	var is_hit = attack_roll >= target_ac
 	var damage = 0
 	if is_hit and attack.has("damage"):
