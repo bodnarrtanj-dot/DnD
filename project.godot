@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://scripts/autoload/GameManager.gd"
+GameManager="*res://scripts/systems/GameManager.gd"
 DiceSystem="*res://scripts/systems/DiceSystem.gd"
 CombatSystem="*res://scripts/systems/CombatSystem.gd"
 QuestSystem="*res://scripts/systems/QuestSystem.gd"
@@ -27,7 +27,7 @@ QuestSystem="*res://scripts/systems/QuestSystem.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="2d"
-window/handheld/orientation="portrait"
+window/handled/orientation="landscape"
 
 [input]
 

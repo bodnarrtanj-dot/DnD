@@ -1,101 +1,50 @@
 extends Node2D
-## City.gd - Клас міста
 
-# Назва міста
-var city_name: String = "Камілгтон"
+const CITY_SIZE: Vector2i = Vector2i(30, 30)
+const CELL_SIZE: Vector2i = Vector2i(16, 16)
 
-# Посилання на UI
-@onready var ui: CanvasLayer = $UI
-@onready var title_label: Label = $UI/HUD/TitleLabel
-@onready var hp_label: Label = $UI/HUD/StatsPanel/HPLabel
+const TILE_ROAD: int = 0
+const TILE_BUILDING: int = 1
+const TILE_PARK: int = 2
+const TILE_MARKET: int = 3
 
-# Дані про локації у місті
-var locations: Dictionary = {
-	"tavern": {
-		"name": "Таверна 'Чорний Крук'",
-		"description": "Місце для відпочинку та збору інформації.",
-		"quests": ["cult_investigation"]
-	},
-	"temple": {
-		"name": "Храм Світла",
-		"description": "Святе місце, де можна отримати благословення.",
-		"services": ["blessing", "healing"]
-	},
-	"shop": {
-		"name": "Крама",
-		"description": "Місце для покупки зброї та предметів.",
-		"items": [
-			{"name": "Зілля лікування", "price": 50, "type": "potion"},
-			{"name": "Меч +1", "price": 200, "type": "weapon"},
-			{"name": "Шкіряна броня", "price": 100, "type": "armor"}
-		]
-	}
-}
+@onready var tile_map: TileMap = $TileMap
+@onready var player: CharacterBody2D = $Player
 
+var city_name: String = ""
 
 func _ready():
-	# Отримуємо ім'я міста з метаданих
-	city_name = get_meta("city_name", "Камілгтон")
-	title_label.text = "Місто: %s" % city_name
-	
-	# Оновлюємо UI
-	update_ui()
-
-
-## Оновлення UI
-func update_ui():
+	generate_city()
 	if GameManager.current_player:
-		hp_label.text = "HP: %d/%d" % [GameManager.current_player.hp, GameManager.current_player.max_hp]
+		player = GameManager.current_player
+	player.global_position = cell_to_world(Vector2i(15, 15))
+	player.current_cell = Vector2i(15, 15)
 
+func generate_city():
+	# Generate a simple city layout
+	for x in range(CITY_SIZE.x):
+		for y in range(CITY_SIZE.y):
+			tile_map.set_cell(0, Vector2i(x, y), TILE_ROAD)
+	# Add buildings
+	for x in range(5, 25, 5):
+		for y in range(5, 25, 5):
+			if randf() > 0.3:
+				tile_map.set_cell(0, Vector2i(x, y), TILE_BUILDING)
+	# Add central park
+	for x in range(12, 18):
+		for y in range(12, 18):
+			tile_map.set_cell(0, Vector2i(x, y), TILE_PARK)
+	# Add market
+	for x in range(20, 25):
+		for y in range(5, 10):
+			tile_map.set_cell(0, Vector2i(x, y), TILE_MARKET)
 
-## Обробка натискання кнопки "Таверна"
-func _on_tavern_button_pressed():
-	log_message("Ви заходите до таверни '%s'" % locations["tavern"]["name"])
-	# Додаємо квест, якщо він ще не доданий
-	if not QuestSystem.get_quest("cult_investigation"):
-		var quest = {
-			"id": "cult_investigation",
-			"name": "Розслідування культу Каплоса",
-			"description": "Знайдіть табір культистів у лісі Kerinmor та дізнайтеся про їхні плани.",
-			"objectives": [
-				{"type": "explore", "location": "Табір культистів", "completed": false},
-				{"type": "find", "item": "Щоденник адепта", "completed": false}
-			],
-			"reward_xp": 200,
-			"reward_gold": 100,
-			"reward_item": "Карта до Камілгтона"
-		}
-		QuestSystem.add_quest(quest)
-		log_message("Ви отримали новий квест: %s" % quest["name"])
+func world_to_cell(world_pos: Vector2) -> Vector2i:
+	return tile_map.local_to_map(world_pos)
 
+func cell_to_world(cell_pos: Vector2i) -> Vector2:
+	return tile_map.map_to_local(cell_pos)
 
-## Обробка натискання кнопки "Храм"
-func _on_temple_button_pressed():
-	log_message("Ви заходите до %s" % locations["temple"]["name"])
-	# Отримуємо благословення
-	if GameManager.current_player:
-		GameManager.current_player.set_meta("blessed", true)
-		log_message("Ви отримали благословення! +2 до рятувальних кидків проти темряви.")
-
-
-## Обробка натискання кнопки "Крама"
-func _on_shop_button_pressed():
-	log_message("Ви заходите до крамниці")
-	# Показуємо список предметів
-	for item in locations["shop"]["items"]:
-		log_message("-%s (%d золотих)" % [item["name"], item["price"]])
-
-
-## Обробка натискання кнопки "Вийти з міста"
-func _on_exit_button_pressed():
-	# Повертаємося до світу
-	GameManager.return_to_world()
-
-
-## Додавання повідомлення до логу (тимчасово)
-func log_message(message: String):
-	print(message)
-
-
-func _process(delta):
-	update_ui()
+func is_cell_walkable(cell_pos: Vector2i) -> bool:
+	var cell_id = tile_map.get_cell_source_id(0, cell_pos)
+	return cell_id == TILE_ROAD or cell_id == TILE_PARK or cell_id == TILE_MARKET
